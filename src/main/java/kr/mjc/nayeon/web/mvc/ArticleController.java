@@ -127,8 +127,6 @@ public class ArticleController {
 
         try {
             articleDao.updateArticle(article);
-            HttpSession session = request.getSession();
-            session.setAttribute("ARTICLE", article);
             response.sendRedirect(request.getContextPath() + "/mvc/article/articleList");
         } catch (EmptyResultDataAccessException e) {
             response.sendRedirect(request.getContextPath() +
@@ -145,7 +143,6 @@ public class ArticleController {
 
         try {
             articleDao.deleteArticle(articleId, userId);
-
             response.sendRedirect(request.getContextPath() + "/mvc/article/articleList");
         } catch (EmptyResultDataAccessException e) {
             response.sendRedirect(request.getContextPath() +
