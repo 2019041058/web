@@ -57,22 +57,22 @@ public class ArticleController {
     /**
      * 게시글 수정 화면
      */
-        public void articleUpdate(HttpServletRequest request, HttpServletResponse response)
+    public void articleUpdate(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-            request.getRequestDispatcher("/WEB-INF/jsp/mvc/article/articleUpdate.jsp")
-                    .forward(request, response);
-        }
+        request.getRequestDispatcher("/WEB-INF/jsp/mvc/article/articleUpdate.jsp")
+                .forward(request, response);
+    }
 
     /**
      * 게시글 삭제 화면
      */
-        public void articleDelete(HttpServletRequest request, HttpServletResponse response)
+    public void articleDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-            request.getRequestDispatcher("/WEB-INF/jsp/mvc/article/articleDelete.jsp")
-                    .forward(request, response);
-        }
+        request.getRequestDispatcher("/WEB-INF/jsp/mvc/article/articleDelete.jsp")
+                .forward(request, response);
+    }
 
     /**
      * 게시글 상세 보기 화면
@@ -87,16 +87,16 @@ public class ArticleController {
     /**
      * 게시글 쓰기 액션
      */
-        public void addArticle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void addArticle(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Article article = new Article();
-            article.setTitle(request.getParameter("title"));
-            article.setContent(request.getParameter("content"));
-            article.setUserId(Integer.parseInt(request.getParameter("userId")));
-            article.setName(request.getParameter("name"));
+        article.setTitle(request.getParameter("title"));
+        article.setContent(request.getParameter("content"));
+        article.setUserId(Integer.parseInt(request.getParameter("userId")));
+        article.setName(request.getParameter("name"));
 
-                articleDao.addArticle(article);
-                response.sendRedirect(request.getContextPath() + "/mvc/article/articleList");
-        }
+        articleDao.addArticle(article);
+        response.sendRedirect(request.getContextPath() + "/mvc/article/articleList");
+    }
 
     /**
      * 게시글 상세 보기 액션
@@ -111,7 +111,7 @@ public class ArticleController {
             response.sendRedirect(request.getContextPath() + "/mvc/article/articleView");
         } catch (EmptyResultDataAccessException e) {
             response.sendRedirect(request.getContextPath() +
-                    "/mvc/article/articleForm?msg=no articleId");
+                    "/mvc/article/articleGet?msg=no articleId");
         }
     }
 
@@ -127,6 +127,8 @@ public class ArticleController {
 
         try {
             articleDao.updateArticle(article);
+            HttpSession session = request.getSession();
+            session.setAttribute("ARTICLE", article);
             response.sendRedirect(request.getContextPath() + "/mvc/article/articleList");
         } catch (EmptyResultDataAccessException e) {
             response.sendRedirect(request.getContextPath() +
@@ -143,10 +145,11 @@ public class ArticleController {
 
         try {
             articleDao.deleteArticle(articleId, userId);
+
             response.sendRedirect(request.getContextPath() + "/mvc/article/articleList");
         } catch (EmptyResultDataAccessException e) {
             response.sendRedirect(request.getContextPath() +
-                    "/mvc/article/articleForm?msg=no articleId or no userId");
+                    "/mvc/article/articleDelete?msg=no articleId or no userId");
         }
     }
 }
