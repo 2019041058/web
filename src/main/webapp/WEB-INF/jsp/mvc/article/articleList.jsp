@@ -4,7 +4,7 @@
 <html>
 <body>
 <h3>글 목록</h3>
-<p><a href="/mvc/user/loginForm">로그인</a> <a href="/mvc/user/userForm">회원가입</a></p>
+<p><a href="/mvc/user/loginForm">로그인</a> <a href="/mvc/user/userForm">회원가입</a> <a href="/mvc/article/articleGet">글 상세보기</a></p>
 <%
     List<Article> articleList = (List<Article>) request.getAttribute("articleList");
     for (Article article : articleList) {%>
