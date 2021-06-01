@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * 모든 요청을 받아서 uri에 따라 컨트롤러 메서드를 호출한다.
  */
-@WebServlet("/mvc/*")
+@WebServlet("/mvc/**")
 public class DispatcherServlet extends HttpServlet {
 
     @Autowired
@@ -34,13 +34,12 @@ public class DispatcherServlet extends HttpServlet {
             case "/mvc/user/userInfo" -> userController.userInfo(request, response);
             case "/mvc/user/addUser" -> userController.addUser(request, response);
             case "/mvc/user/login" -> userController.login(request, response);
+            case "/mvc/user/logout" -> userController.logout(request, response);
+
             case "/mvc/article/articleList" -> articleController.articleList(request, response);
             case "/mvc/article/articleForm" -> articleController.articleForm(request, response);
-            case "/mvc/article/articleGet" -> articleController.articleGet(request, response);
             case "/mvc/article/articleUpdate" -> articleController.articleUpdate(request, response);
-            case "/mvc/article/articleDelete" -> articleController.articleDelete(request, response);
             case "/mvc/article/articleView" -> articleController.articleView(request, response);
-            case "/mvc/article/getArticle" -> articleController.getArticle(request, response);
             case "/mvc/article/addArticle" -> articleController.addArticle(request, response);
             case "/mvc/article/updateArticle" -> articleController.updateArticle(request, response);
             case "/mvc/article/deleteArticle" -> articleController.deleteArticle(request, response);

@@ -19,6 +19,9 @@ public class ArticleDao {
       select articleId, title, userId, name, left(cdate,16) cdate
       from article order by articleId desc limit ?,?""";
 
+  public static final String COUNT_ARTICLES =
+          "select count(articleId) from article";
+
   private static final String GET_ARTICLE = """
       select articleId, title, content, userId, name,
         left(cdate,16) cdate, left(udate,16) udate
@@ -54,6 +57,13 @@ public class ArticleDao {
    */
   public List<Article> listArticles(int offset, int count) {
     return jdbcTemplate.query(LIST_ARTICLES, rowMapper, offset, count);
+  }
+
+  /**
+   * 게시글 건수
+   */
+  public Integer countArticles() {
+    return jdbcTemplate.queryForObject(COUNT_ARTICLES, Integer.class);
   }
 
   /**
