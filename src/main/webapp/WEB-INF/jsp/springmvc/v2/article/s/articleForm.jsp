@@ -15,7 +15,7 @@
 <body>
 <%@ include file="/WEB-INF/jsp/springmvc/v2/menu.jsp" %>
 <h3>게시글 쓰기</h3>
-<form action="./springmvc/v2/article/addArticle" method="post">
+<form action="./app/springmvc/v2/article/s/addArticle" method="post">
     <p><input type="text" name="title" required autofocus/></p>
     <p><textarea name="content" required></textarea></p>
     <p>

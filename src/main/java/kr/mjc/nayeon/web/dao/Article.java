@@ -1,6 +1,7 @@
 package kr.mjc.nayeon.web.dao;
 
 import lombok.Data;
+import org.owasp.encoder.Encode;
 
 @Data
 public class Article {
@@ -12,7 +13,11 @@ public class Article {
   String cdate;
   String udate;
 
-    public String getContentHtml() {
-      return content.replaceAll("\n", "<br>");
+  public String getTitleHtml() {
+    return Encode.forHtml(title);
+  }
+
+  public String getContentHtml() {
+      return Encode.forHtml(content).replaceAll("\n", "<br>");
     }
 }

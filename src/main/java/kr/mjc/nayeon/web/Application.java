@@ -1,4 +1,4 @@
-package kr.mjc.jacob.web;
+package kr.mjc.nayeon.web;
 
 import kr.mjc.nayeon.web.springmvc.v2.LoginInterceptor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,13 +22,7 @@ public class Application implements WebMvcConfigurer {
   public void addInterceptors(InterceptorRegistry registry) {
     InterceptorRegistration loginReg =
             registry.addInterceptor(new LoginInterceptor());
-    loginReg.addPathPatterns("/**/myInfo");
-    loginReg.addPathPatterns("/**/userEdit");
-    loginReg.addPathPatterns("/**/articleForm");
-    loginReg.addPathPatterns("/**/articleEdit");
-    loginReg.addPathPatterns("/**/addArticle");
-    loginReg.addPathPatterns("/**/updateArticle");
-    loginReg.addPathPatterns("/**/deleteArticle");
+    loginReg.addPathPatterns("/**/s/**");
     log.info("LoginInterceptor를 등록했습니다");
   }
 }

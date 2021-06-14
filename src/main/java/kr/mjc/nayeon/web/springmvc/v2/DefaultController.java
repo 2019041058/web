@@ -15,11 +15,4 @@ public class DefaultController {
   public void mapDefault() {
   }
 
-  /**
-   * / 매핑
-   */
-  @GetMapping("/")
-  public String mapIndex() {
-   return "index"; // forward /WEB-INF/jsp/index.jsp
-  }
 }
